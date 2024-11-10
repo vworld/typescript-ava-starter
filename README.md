@@ -22,6 +22,19 @@ This is a simple starter for TS projects with linting and ava.
 Many awesome starters exist. This is useful when you quickly want to get started with just the basics.
 This is primarily a bookmark project for myself, but if you find it useful I would love to know that.
 
+## Environment Variables
+
+- uses package `@dotenvx/dotenvx`
+- Default variables can be saved in .env file. All environment specific variables can be set in their respective
+  file (`.env.production`, `.env.development` and `.env.testing`)
+- Environment specific file `.env.(production|development|testing` would override the values set in `.env`
+- This pattern can be used to avoid unnecessary repetition.
+- All environment variables should be re-exported from `src/utils/env.ts`
+
+## Logging
+
+- Logging is done via winston. A few utilities have been added
+
 ## How to use
 
 - Clone the repository with `git clone`

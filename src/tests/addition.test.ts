@@ -1,4 +1,5 @@
 import test from "ava";
+
 import {addNumbers} from "../addition.js";
 
 test("javascript knows addition", (t) => {
