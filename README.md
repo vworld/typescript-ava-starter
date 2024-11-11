@@ -114,4 +114,7 @@ Awesome, feel free to fork or leave a start.
 ## Other full-featured starters
 
 - https://github.com/bitjson/typescript-starter (when creating library)
-- https://github.com/ljlm0402/typescript-express-starter - (full featured)
+- https://github.com/ljlm0402/typescript-express-starter - (full-featured)
+
+## TODO
+ - Automate runtime env type validation and conversion from string 
