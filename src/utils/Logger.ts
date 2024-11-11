@@ -4,27 +4,23 @@ import path from "node:path";
 import winston, {format, transports, Logger as WinstonLogger} from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 
+import {LogOptions} from "../types/Logger.types.js";
 
-interface LoggerOptions {
-    level?: string;                // Custom log level (e.g., 'info', 'error')
-    fileName?: string;             // Custom log file name (default: `${level}.log`)
-    logToConsole?: boolean;        // Whether to log to the console (default: true)
-    logDirectory?: string;         // Directory where log files will be saved (default: 'logs/')
-    fileFormat?: 'readable' | 'json' | 'both';  // Log file format option
-}
+import {LOG_LEVEL} from "./env.js";
 
 type LogMeta = (string | number | object)[];
 
 export default class Logger {
     private logger: WinstonLogger;
 
-    constructor(options: LoggerOptions = {}) {
+    constructor(options: LogOptions = {}) {
         const {
-            level = 'info',             // Default log level
+            level = LOG_LEVEL,             // Default log level
             fileName = `${level}.log`,  // Default log file name
             logToConsole = false,        // Log to console by default
             logDirectory = 'logs/',     // Default log directory
-            fileFormat = 'json'         // Default log format (json)
+            fileFormat = 'json',         // Default log format (json)
+            silent = false
         } = options;
 
         const logRetention = `${process.env.LOG_RETENTION_DAYS || 14}d`;
@@ -124,6 +120,7 @@ export default class Logger {
                 format.errors({stack: true}), // Log stack traces
                 format.splat()                   // Support string interpolation
             ),
+            silent,
             transports: loggerTransports,
         });
     }
